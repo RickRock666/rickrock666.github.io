@@ -131,11 +131,7 @@
       text-decoration: none;
     }
     .site-nav a:hover { color: var(--text); background: rgba(255, 255, 255, .05); }
-    .site-nav .nav-github {
-      margin-left: .25rem;
-      border: 1px solid var(--line);
-      color: var(--text);
-    }
+
 
     .hero {
       display: grid;
@@ -365,63 +361,35 @@
     .section-note { margin-top: 1.25rem; color: var(--muted-2); font-size: .86rem; }
     .section-note a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
 
-    .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
-    .video-card {
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
+    .tutorial-feature {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1.1rem;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--surface);
-      text-decoration: none;
-      transition: transform .2s ease, border-color .2s ease;
     }
-    .video-card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
-    .video-thumb { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #0b0e14; }
-    .video-thumb img { width: 100%; height: 100%; object-fit: cover; }
-    .video-thumb::after {
-      content: "";
+    .video-embed {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 14px;
+      background: #0b0e14;
+    }
+    .video-embed iframe {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent 45%, rgba(0, 0, 0, .55));
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
-    .play {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      z-index: 1;
-      display: grid;
-      width: 44px;
-      height: 44px;
-      place-items: center;
-      padding-left: 2px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, .92);
-      color: #111;
-      font-size: .85rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
-      transform: translate(-50%, -50%);
-    }
-    .video-tag {
-      position: absolute;
-      left: .7rem;
-      top: .7rem;
-      z-index: 1;
-      padding: .22rem .5rem;
-      border: 1px solid var(--line-strong);
-      border-radius: 999px;
-      background: rgba(8, 10, 15, .75);
-      color: var(--text);
-      font-size: .62rem;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      backdrop-filter: blur(8px);
-    }
-    .video-body { display: flex; flex-direction: column; gap: .35rem; padding: 1rem 1.1rem 1.15rem; }
-    .video-body h3 { font-size: 1.02rem; line-height: 1.3; }
-    .video-body p { color: var(--muted-2); font-size: .82rem; }
-    .video-body .text-link { margin-top: .4rem; }
+    .tutorial-copy { padding: .4rem .5rem; }
+    .tutorial-copy .badge { margin-bottom: .8rem; }
+    .tutorial-copy h3 { margin-bottom: .6rem; font-size: 1.5rem; }
+    .tutorial-copy p { color: var(--muted); font-size: .95rem; }
+    .tutorial-copy .btn { margin-top: 1.2rem; }
     .section-actions { margin-top: 1.5rem; }
 
     .support-card {
@@ -484,7 +452,7 @@
     @media (max-width: 980px) {
       .hero { grid-template-columns: 1fr; gap: 3rem; padding-top: 4rem; }
       .hero-visual { width: min(680px, 100%); margin-inline: auto; }
-      .video-grid { grid-template-columns: repeat(2, 1fr); }
+      .tutorial-feature { grid-template-columns: 1fr; }
       .support-card { flex-direction: column; align-items: flex-start; }
       .about { grid-template-columns: 1fr; gap: 1rem; }
     }
@@ -493,7 +461,6 @@
       .header-inner { min-height: 64px; }
       .site-nav { gap: 0; }
       .site-nav a { padding: .45rem .5rem; font-size: .82rem; }
-      .site-nav .nav-github { display: none; }
       .brand-text span { display: none; }
       .hero { padding: 3.5rem 0 4rem; }
       .hero h1 { font-size: clamp(2.4rem, 11vw, 3.6rem); }
@@ -503,7 +470,6 @@
       .app-grid { grid-template-columns: 1fr; }
       .app-featured { display: flex; flex-direction: column; }
       .app-featured .app-media { min-height: 0; aspect-ratio: 16 / 9; }
-      .video-grid { grid-template-columns: 1fr; }
       .support-card { padding: 1.4rem; }
       .footer-inner { grid-template-columns: 1fr; }
     }
@@ -548,7 +514,6 @@
         <a href="#apps">Apps</a>
         <a href="#tutoriales">Tutoriales</a>
         <a href="#apoyo">Ko-fi</a>
-        <a class="nav-github" href="https://github.com/RickRock666" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
       </nav>
     </div>
   </header>
@@ -558,14 +523,14 @@
       <div class="hero-copy">
         <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Desarrollador independiente · México</p>
         <h1>Apps y juegos<br><span class="grad">con vida propia.</span></h1>
-        <p class="lead">Soy Omar Alba, también conocido como <strong>RickRock666</strong>. Creo herramientas y juegos en Godot y Unity: avatares que reaccionan a tu voz, peleas de stickman y un boss rush con brujas.</p>
+        <p class="lead">Soy Omar Alba, también conocido como <strong>RickRock666</strong>. Creo herramientas y juegos en Godot, Unity y Unreal Engine.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#apps">Ver apps y juegos</a>
           <a class="btn btn-ghost" href="https://ko-fi.com/rickrock666" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">☕</span> Invítame un café</a>
         </div>
         <ul class="hero-stats" aria-label="Resumen del proyecto">
           <li><strong>3</strong><span>apps y juegos</span></li>
-          <li><strong>3</strong><span>tutoriales</span></li>
+          <li><strong>1</strong><span>tutorial de PC</span></li>
           <li><strong>1</strong><span>persona detrás</span></li>
         </ul>
       </div>
@@ -575,7 +540,7 @@
           <img src="https://play-lh.googleusercontent.com/En93zMKMzG_SCQadcnDOjcFCM7-E3OOdQwk7D88Ck9NTMBRbBP87ZhbkiB8u0UJfzQU-TY-JyMzinnuAUnVBqQ=w720-h1600" alt="" width="720" height="1600" fetchpriority="high" decoding="async">
         </div>
         <div class="float-card">2DTuber<span>Android + Windows</span></div>
-        <div class="float-card float-bottom">Hecho con Godot<span>y Unity</span></div>
+        <div class="float-card float-bottom">Hecho con Godot</div>
       </div>
     </section>
 
@@ -653,49 +618,20 @@
     <section id="tutoriales" class="section wrap">
       <div class="section-head">
         <p class="eyebrow">02 — YouTube</p>
-        <h2>Tutoriales</h2>
-        <p>Aprende a sacarle todo a 2DTuber: instalación, avatares, modo flotante, OBS y grabación.</p>
+        <h2>Tutorial de 2DTuber</h2>
+        <p>Versión PC. Próximamente subiré el tutorial de Android.</p>
       </div>
 
-      <div class="video-grid">
-        <a class="video-card" href="https://www.youtube.com/watch?v=xi9ygHDCi5g" target="_blank" rel="noopener noreferrer">
-          <div class="video-thumb">
-            <img src="https://i.ytimg.com/vi/xi9ygHDCi5g/hqdefault.jpg" alt="" width="480" height="360" decoding="async">
-            <span class="video-tag">Actualizado</span>
-            <span class="play" aria-hidden="true">▶</span>
-          </div>
-          <div class="video-body">
-            <h3>2DTuber tutorial ACTUALIZADO!</h3>
-            <p>La guía más reciente, paso a paso.</p>
-            <span class="text-link">Ver en YouTube ↗</span>
-          </div>
-        </a>
-
-        <a class="video-card" href="https://www.youtube.com/watch?v=dAs22hQjGlI" target="_blank" rel="noopener noreferrer">
-          <div class="video-thumb">
-            <img src="https://i.ytimg.com/vi/dAs22hQjGlI/hqdefault.jpg" alt="" width="480" height="360" decoding="async">
-            <span class="video-tag">Introducción</span>
-            <span class="play" aria-hidden="true">▶</span>
-          </div>
-          <div class="video-body">
-            <h3>2DTuber — Da vida a tu avatar PNG en segundos</h3>
-            <p>Una introducción rápida al proyecto.</p>
-            <span class="text-link">Ver en YouTube ↗</span>
-          </div>
-        </a>
-
-        <a class="video-card" href="https://www.youtube.com/watch?v=8Xm4Eg60Mag" target="_blank" rel="noopener noreferrer">
-          <div class="video-thumb">
-            <img src="https://i.ytimg.com/vi/8Xm4Eg60Mag/hqdefault.jpg" alt="" width="480" height="360" decoding="async">
-            <span class="video-tag">Original</span>
-            <span class="play" aria-hidden="true">▶</span>
-          </div>
-          <div class="video-body">
-            <h3>2DTuber tutorial</h3>
-            <p>La guía original para configurar tu avatar.</p>
-            <span class="text-link">Ver en YouTube ↗</span>
-          </div>
-        </a>
+      <div class="tutorial-feature">
+        <div class="video-embed">
+          <iframe src="https://www.youtube-nocookie.com/embed/xi9ygHDCi5g" title="2DTuber tutorial ACTUALIZADO!" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="tutorial-copy">
+          <span class="badge">2DTuber · PC</span>
+          <h3>Tutorial de 2DTuber para PC</h3>
+          <p>Guía completa de la versión de PC: avatar, modo flotante, OBS y grabación.</p>
+          <a class="btn btn-small btn-primary" href="https://youtu.be/xi9ygHDCi5g" target="_blank" rel="noopener noreferrer">Ver en YouTube ↗</a>
+        </div>
       </div>
 
       <div class="section-actions">
